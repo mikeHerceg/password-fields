@@ -21,23 +21,23 @@ export const Form = () => {
         label="Password"
         isRequired
         onChange={(e) => {
-          setPasswordA({ ...passwordA, value: e.target.value });
+          setPasswordA(e.target.value);
         }}
-        value={passwordA?.value}
-        error={passwordB?.error}
+        value={passwordA}
       />
       <PasswordField
         name={"pwb"}
         label="Confirm Password"
         isRequired
         onChange={(e) => {
-          setPasswordB({ ...passwordB, value: e.target.value });
+          setPasswordB(e.target.value);
         }}
-        value={passwordB?.value}
-        error={passwordB?.error}
+        value={passwordB}
       />
+
       <button type="submit">Submit</button>
-      {errors.length !== 0 && (
+
+      {errors.length !== 0 && ( // errors
         <div>
           {errors.map((error: string, index: number) => (
             <p key={index} className={styles.error}>
@@ -46,9 +46,10 @@ export const Form = () => {
           ))}
         </div>
       )}
-      {successMessage && errors.length === 0 && (
-        <div className={styles.success}>{successMessage}</div>
-      )}
+      {successMessage &&
+        errors.length === 0 && ( //success message
+          <div className={styles.success}>{successMessage}</div>
+        )}
     </form>
   );
 };

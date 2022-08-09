@@ -1,13 +1,10 @@
 import {useState } from 'react';
 
 export const useForm = () =>{
-    const initialvalue = {
-        value:'',
-        error:''
-    }
+
     const [errors, setErrors] = useState<string[]>([])
-    const [passwordA, setPasswordA] = useState(initialvalue)
-    const [passwordB, setPasswordB] = useState(initialvalue)
+    const [passwordA, setPasswordA] = useState<string>('')
+    const [passwordB, setPasswordB] = useState<string>('')
     const [successMessage, setSuccessMessage] = useState<string>()
 
     //eslint-disable-next-line
@@ -19,31 +16,31 @@ export const useForm = () =>{
 
 
     const validatePasswords = ():boolean =>{
-        const valueA = passwordA.value
-        const valueB = passwordB.value
-        console.log({valueA,valueB})
+        if(!passwordA || !passwordB){
+            setErrors(['both fields must be filled in'])
+            return false
+        }
+
         const errorMessages = []
-        if(valueA !== valueB){
-            console.log(1)
+        if(passwordA !== passwordB){
             errorMessages.push('passwords do not match')
         }
-        if(valueA.split('').length < 6){
-            console.log(2)
+        if(passwordA.split('').length < 6){
             errorMessages.push('password requires more than 6 characters')
         }
-        if(!valueA.split('').some(char => upperRegex.test(char))){
+        if(!passwordA.split('').some(char => upperRegex.test(char))){
             console.log(3)
             errorMessages.push('password requires at least one uppercase letter')
         }
-        if(!valueA.split('').some(char => lowerRegex.test(char))){
+        if(!passwordA.split('').some(char => lowerRegex.test(char))){
             console.log(4)
             errorMessages.push('password requires at least one lowercase letter')
         }
-        if(!valueA.split('').some(char => numberRegex.test(char))){
+        if(!passwordA.split('').some(char => numberRegex.test(char))){
             console.log(5)
             errorMessages.push('password requires at least one number')
         }
-        if(!valueA.split('').some(char => specialChars.includes(char))){
+        if(!passwordA.split('').some(char => specialChars.includes(char))){
             console.log(errors, 6)
             errorMessages.push('password requires at least one special character')
         }
