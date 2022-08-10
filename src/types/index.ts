@@ -1,4 +1,4 @@
 export enum FieldTypes {
-    Text = 'text',
-    Password = 'password'
+  Text = "text",
+  Password = "password",
 }

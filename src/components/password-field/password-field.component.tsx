@@ -1,13 +1,13 @@
 import React from "react";
 import { usePasswordField } from "./password-field.hooks";
 import styles from "./password-fields.module.scss";
-import { FieldTypes } from "../../../types";
+import { FieldTypes } from "../../types";
 
 interface PasswordFieldProps {
   value: string;
   name: string;
   label: string;
-  onChange?: (e: any) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: () => void;
   isRequired?: boolean;
   error?: string;
@@ -28,6 +28,7 @@ export const PasswordField: React.FC<PasswordFieldProps> = ({
     <div className={styles.formWrapper}>
       <label htmlFor={name}>
         {label}
+        {isRequired && "*"}
         <button type="button" onClick={toggleType}>
           {fieldType === FieldTypes.Password ? "show" : "hide"} password
         </button>

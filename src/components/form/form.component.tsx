@@ -1,5 +1,5 @@
 import React from "react";
-import { PasswordField } from "../fields/password-field";
+import { PasswordField } from "../password-field";
 import { useForm } from "./form.hooks";
 import styles from "./form.module.scss";
 
